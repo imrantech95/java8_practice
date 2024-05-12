@@ -2,6 +2,7 @@ package com.stream.api;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StreamAPIExample {
@@ -19,11 +20,16 @@ public class StreamAPIExample {
 				new Student(8, "Nam", "Dev", 31, "Male", "Computer Engineering", 2014, "Karnataka", 433),
 				new Student(9, "Sonu", "Shankar", 27, "Female", "Computer Engineering", 2018, "Karnataka", 7),
 				new Student(10, "Shubham", "Pandey", 26, "Male", "Instrumentation Engineering", 2017, "Mumbai", 98));
-
-		List<Student> lstStuName = list.stream().filter(dt -> dt.getFirstName().startsWith("A"))
-			    .collect(Collectors.toList());
-
+		
+         //1- Find list of students whose first name starts with alphabet A
+		    List<Student> lstStuName = list.stream().filter(dt -> dt.getFirstName().startsWith("A")).collect(Collectors.toList());
 			System.out.println("List of students whose name starts with letter A : "+lstStuName);
+			
+			
+			//2- Group The Student By Department Names
+			Map<String, List<Student>> mapData = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName));
+			System.out.println("Students grouped by the department names : "+mapData);
+
 
 	}
 
